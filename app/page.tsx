@@ -80,7 +80,7 @@ export default function Home() {
         <Balloon color="pink" delay={0.5} />
       </div>
 
-      <main className="relative min-h-screen flex items-center justify-center px-4 mt-32 md:mt-20">
+      <main className="relative min-h-screen flex items-center justify-center px-4 mt-20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
 
           {/* Heartfelt Intro */}
