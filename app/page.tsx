@@ -80,7 +80,7 @@ export default function Home() {
         <Balloon color="pink" delay={0.5} />
       </div>
 
-      <main className="relative min-h-screen flex items-center justify-center px-4">
+      <main className="relative min-h-screen flex items-center justify-center px-4 mt-32 md:mt-20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
 
           {/* Heartfelt Intro */}
@@ -88,7 +88,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-6"
+            className="space-y-6 "
           >
             <motion.div
               animate={{
