@@ -5,6 +5,9 @@ import { useInView } from 'react-intersection-observer';
 import { Navigation } from '@/components/Navigation';
 import { MusicToggle } from '@/components/MusicToggle';
 import { Timeline } from '@/components/Timeline';
+import { LoveJourneyMap } from '@/components/LoveJourneyMap';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Clock, Map } from 'lucide-react';
 
 export default function JourneyPage() {
   const [ref, inView] = useInView({
@@ -31,11 +34,30 @@ export default function JourneyPage() {
             </h1>
             <p className="text-xl text-gray-700 max-w-2xl mx-auto">
               Every moment with you has been a gift. Here's our story, 
-              one precious memory at a time.
+              told through time and the places we've been together.
             </p>
           </motion.div>
 
-          <Timeline />
+          <Tabs defaultValue="timeline" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-12">
+              <TabsTrigger value="timeline" className="flex items-center gap-2">
+                <Clock className="w-4 h-4" />
+                Timeline
+              </TabsTrigger>
+              <TabsTrigger value="map" className="flex items-center gap-2">
+                <Map className="w-4 h-4" />
+                Journey Map
+              </TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="timeline">
+              <Timeline />
+            </TabsContent>
+            
+            <TabsContent value="map">
+              <LoveJourneyMap />
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
     </>

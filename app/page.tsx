@@ -12,6 +12,11 @@ import { Heart, Gift, Sparkles } from 'lucide-react';
 import JourneyPage from './journey/page';
 import MessagesPage from './messages/page';
 import GalleryPage from './gallery/page';
+import { EasterEggHunter } from '@/components/EasterEggHunter';
+import { SpinWheel } from '@/components/SpinWheel';
+import { ScratchCard } from '@/components/ScratchCard';
+import FunPage from './fun/page';
+import PhotoBooth from '@/components/PhotoBooth';
 
 
 
@@ -52,6 +57,7 @@ export default function Home() {
     <>
       <Navigation />
       <MusicToggle />
+       <EasterEggHunter />
 
       {showConfetti && (
         <Confetti
@@ -107,7 +113,7 @@ export default function Home() {
             </motion.div>
 
             <h1 className="font-handwriting text-4xl md:text-6xl lg:text-7xl text-rose-600 leading-tight">
-              Hey Beautiful,
+              Hey Baby😘,
               <br />
               <span className="text-purple-600">Happy Birthday!</span>
             </h1>
@@ -130,7 +136,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
-            <CountdownTimer targetDate="2025-10-10" onComplete={() => setIsUnlocked(true)} />
+            <CountdownTimer targetDate="2025-09-10" onComplete={() => setIsUnlocked(true)} />
           </motion.div>
 
           {/* CTA Buttons */}
@@ -190,9 +196,12 @@ export default function Home() {
       </main>
       {isUnlocked ? (
         <>
+        <FunPage/>
+        {/* <ScratchCard/> */}
           <JourneyPage />
-          <MessagesPage />
+          {/* <MessagesPage /> */}
           <GalleryPage />
+           <PhotoBooth />
         </>
       ) : (
         <div className="text-center py-12 text-gray-600">

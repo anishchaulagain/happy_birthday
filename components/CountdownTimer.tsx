@@ -48,7 +48,7 @@ export function CountdownTimer({ targetDate, onComplete }: CountdownTimerProps) 
         newTime.seconds === 0
       ) {
         setIsOver(true);
-        if (onComplete) onComplete(); 
+        if (onComplete) onComplete();
         clearInterval(timer);
       }
     }, 1000);
@@ -61,11 +61,18 @@ export function CountdownTimer({ targetDate, onComplete }: CountdownTimerProps) 
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-green-200 text-center"
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+        className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-pink-200 text-center"
       >
-        <h2 className="text-2xl md:text-3xl font-bold text-green-700">
-          🎉 The special day is here! 🎂
-        </h2>
+        <motion.h2
+          initial={{ scale: 0, rotate: -10, opacity: 0 }}
+          animate={{ scale: 1, rotate: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 200, damping: 12 }}
+          className="text-3xl md:text-4xl font-extrabold text-pink-600"
+        >
+          🥳 Ta-da! My Fav Person's Birthday is Here 🎂
+        </motion.h2>
       </motion.div>
     );
   }
