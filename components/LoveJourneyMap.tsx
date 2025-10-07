@@ -12,7 +12,7 @@ interface MapLocation {
   name: string;
   coordinates: { x: number; y: number }; // Percentage-based positioning
   date: string;
-  category: 'first' | 'vacation' | 'date' | 'special' | 'home';
+  category: 'coffee' | 'walk' | 'temple' | 'lake' | 'adventure' | 'evening' | 'nature' | 'viewpoint' | 'festival';
   photo: string;
   memory: string;
   description: string;
@@ -22,86 +22,138 @@ interface MapLocation {
 const mapLocations: MapLocation[] = [
   {
     id: 1,
-    name: "Coffee Shop Downtown",
-    coordinates: { x: 25, y: 40 },
-    date: "January 15, 2023",
-    category: 'first',
-    photo: "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=600",
-    memory: "Where We First Met",
-    description: "The little corner table where you were reading that book. I still remember how my heart skipped when you looked up and smiled. This is where our story began. ☕💕",
-    color: "#f43f5e"
+    name: "Bhaktapur Himalayan Java",
+    coordinates: { x: 28, y: 45 },
+    date: "March 5, 2024",
+    category: "coffee",
+    photo: "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=600",
+    memory: "Evening Coffee Date",
+    description: "You ordered a caramel latte, I took a mocha, and we watched Bhaktapur slowly light up as the sun went down. ☕✨",
+    color: "#f97316"
   },
   {
     id: 2,
-    name: "Italian Restaurant",
-    coordinates: { x: 45, y: 55 },
-    date: "February 14, 2023",
-    category: 'date',
-    photo: "https://images.pexels.com/photos/1024870/pexels-photo-1024870.jpeg?auto=compress&cs=tinysrgb&w=600",
-    memory: "First Valentine's Day",
-    description: "Our first official date! You wore that stunning red dress and I could barely form sentences. We talked until they had to ask us to leave. That's when I knew I was falling hard. 🌹",
-    color: "#ec4899"
+    name: "Gundu",
+    coordinates: { x: 50, y: 42 },
+    date: "April 20, 2024",
+    category: "walk",
+    photo: "https://images.pexels.com/photos/210186/pexels-photo-210186.jpeg?auto=compress&cs=tinysrgb&w=600",
+    memory: "Peaceful Walk Together",
+    description: "A quiet walk through the fields of Gundu. Just us, the breeze, and the sound of rustling leaves. 🌾💫",
+    color: "#22c55e"
   },
   {
     id: 3,
-    name: "Seaside Resort",
-    coordinates: { x: 75, y: 25 },
-    date: "June 20, 2023",
-    category: 'vacation',
-    photo: "https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg?auto=compress&cs=tinysrgb&w=600",
-    memory: "First Trip Together",
-    description: "Our magical weekend by the ocean. Watching the sunrise with you on the beach, I knew I wanted to share every sunrise and sunset for the rest of my life. 🌅",
-    color: "#06b6d4"
+    name: "Pilot Baba",
+    coordinates: { x: 60, y: 38 },
+    date: "May 12, 2024",
+    category: "temple",
+    photo: "https://images.pexels.com/photos/161931/temple-asia-nepal-161931.jpeg?auto=compress&cs=tinysrgb&w=600",
+    memory: "Temple Visit",
+    description: "You laughed when I struggled to climb the stairs. The view from the top was worth every step — so were you. 🏞️❤️",
+    color: "#3b82f6"
   },
   {
     id: 4,
-    name: "Our First Apartment",
-    coordinates: { x: 35, y: 70 },
-    date: "September 10, 2023",
-    category: 'home',
-    photo: "https://images.pexels.com/photos/1024980/pexels-photo-1024980.jpeg?auto=compress&cs=tinysrgb&w=600",
-    memory: "Moving In Together",
-    description: "Surrounded by boxes and chaos, but it felt like the most natural thing in the world. Coming home to you every day has been my greatest joy. 🏠💕",
-    color: "#10b981"
+    name: "Siddhapokhari",
+    coordinates: { x: 42, y: 55 },
+    date: "June 30, 2024",
+    category: "lake",
+    photo: "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=600",
+    memory: "Evening by the Water",
+    description: "We sat by the edge, talking about everything and nothing. The reflection on the water looked calmer than my heart. 💧💙",
+    color: "#06b6d4"
   },
   {
     id: 5,
-    name: "Mountain Trail",
-    coordinates: { x: 60, y: 35 },
-    date: "August 15, 2023",
-    category: 'special',
-    photo: "https://images.pexels.com/photos/1157255/pexels-photo-1157255.jpeg?auto=compress&cs=tinysrgb&w=600",
-    memory: "Adventure Together",
-    description: "That challenging hike where we got lost but found each other even more. You never complained once, just kept making jokes to keep our spirits up. That's when I knew you were my adventure partner for life. 🏔️",
-    color: "#8b5cf6"
+    name: "Buchacho Gadi",
+    coordinates: { x: 68, y: 50 },
+    date: "July 15, 2024",
+    category: "adventure",
+    photo: "https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg?auto=compress&cs=tinysrgb&w=600",
+    memory: "Mini Adventure",
+    description: "We climbed the old walls pretending to be explorers. You said it felt like a fairytale, and I silently agreed. 🏰💞",
+    color: "#a855f7"
   },
   {
     id: 6,
-    name: "City Park",
-    coordinates: { x: 50, y: 45 },
-    date: "March 22, 2024",
-    category: 'date',
-    photo: "https://images.pexels.com/photos/1024876/pexels-photo-1024876.jpeg?auto=compress&cs=tinysrgb&w=600",
-    memory: "Picnic in the Park",
-    description: "That perfect spring day when we had an impromptu picnic. You brought homemade sandwiches and I brought terrible jokes. We laughed until our stomachs hurt. Simple moments like these are my favorite. 🧺",
+    name: "Kritipur Pul",
+    coordinates: { x: 34, y: 62 },
+    date: "August 21, 2024",
+    category: "evening",
+    photo: "https://images.pexels.com/photos/239520/pexels-photo-239520.jpeg?auto=compress&cs=tinysrgb&w=600",
+    memory: "Rainy Evening",
+    description: "We stood under the bridge, sharing an umbrella and a secret or two. The city lights blurred with the rain. 🌧️💜",
+    color: "#9333ea"
+  },
+  {
+    id: 7,
+    name: "Nala",
+    coordinates: { x: 25, y: 68 },
+    date: "September 2, 2024",
+    category: "temple",
+    photo: "https://images.pexels.com/photos/2082109/pexels-photo-2082109.jpeg?auto=compress&cs=tinysrgb&w=600",
+    memory: "Short Trip",
+    description: "The temple bells, the sound of laughter, and your favorite snacks — simple joys, perfect day. 🔔😊",
+    color: "#eab308"
+  },
+  {
+    id: 8,
+    name: "Manjushree Park",
+    coordinates: { x: 55, y: 65 },
+    date: "October 10, 2024",
+    category: "nature",
+    photo: "https://images.pexels.com/photos/325044/pexels-photo-325044.jpeg?auto=compress&cs=tinysrgb&w=600",
+    memory: "Cave Adventure",
+    description: "You screamed when a bat flew past us — then laughed like it was the funniest thing ever. I couldn’t stop smiling. 🦇😂",
+    color: "#10b981"
+  },
+  {
+    id: 9,
+    name: "Nagarkot Bridge",
+    coordinates: { x: 65, y: 70 },
+    date: "November 14, 2024",
+    category: "viewpoint",
+    photo: "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=600",
+    memory: "Sunrise Together",
+    description: "We waited in the cold for the first light — and it was worth it. The world turned golden, just like your smile. 🌄💛",
     color: "#f59e0b"
+  },
+  {
+    id: 10,
+    name: "Nilbarahi Mandir",
+    coordinates: { x: 40, y: 75 },
+    date: "December 22, 2024",
+    category: "festival",
+    photo: "https://images.pexels.com/photos/208739/pexels-photo-208739.jpeg?auto=compress&cs=tinysrgb&w=600",
+    memory: "Cultural Visit",
+    description: "The temple was full of life and music. You danced a little, and I swear everyone else disappeared for a moment. 🎶💃",
+    color: "#ef4444"
   }
 ];
 
 const categoryIcons = {
-  first: '💕',
-  vacation: '✈️',
-  date: '💖',
-  special: '⭐',
-  home: '🏠'
+  coffee: '☕',
+  walk: '🚶‍♀️',
+  temple: '🛕',
+  lake: '💧',
+  adventure: '🏰',
+  evening: '🌆',
+  nature: '🌿',
+  viewpoint: '🌄',
+  festival: '🎉'
 };
 
 const categoryLabels = {
-  first: 'First Meeting',
-  vacation: 'Vacation',
-  date: 'Date Night',
-  special: 'Special Moment',
-  home: 'Home'
+  coffee: 'Coffee Date',
+  walk: 'Evening Walk',
+  temple: 'Temple Visit',
+  lake: 'Lakeside Moment',
+  adventure: 'Adventure Day',
+  evening: 'Rainy Evening',
+  nature: 'Nature Trip',
+  viewpoint: 'Viewpoint',
+  festival: 'Festival Visit'
 };
 
 export function LoveJourneyMap() {
@@ -129,7 +181,7 @@ export function LoveJourneyMap() {
     const currentIndex = mapLocations.findIndex(loc => loc.id === selectedLocation.id);
     const nextIndex = (currentIndex + 1) % mapLocations.length;
     const nextLocation = mapLocations[nextIndex];
-    
+
     setAnimatingTo(nextLocation.id);
     setTimeout(() => {
       setSelectedLocation(nextLocation);
@@ -143,7 +195,7 @@ export function LoveJourneyMap() {
     const currentIndex = mapLocations.findIndex(loc => loc.id === selectedLocation.id);
     const prevIndex = (currentIndex - 1 + mapLocations.length) % mapLocations.length;
     const prevLocation = mapLocations[prevIndex];
-    
+
     setAnimatingTo(prevLocation.id);
     setTimeout(() => {
       setSelectedLocation(prevLocation);
@@ -160,7 +212,7 @@ export function LoveJourneyMap() {
           Our Love Journey Map 🗺️
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Every pin marks a special place in our story. Click on any location to relive 
+          Every pin marks a special place in our story. Click on any location to relive
           those beautiful memories we've created together.
         </p>
       </div>
@@ -176,9 +228,8 @@ export function LoveJourneyMap() {
       </div>
 
       {/* Interactive Map */}
-      <Card className={`relative overflow-hidden bg-gradient-to-br from-blue-50 to-green-50 border-2 border-rose-100 shadow-xl transition-all duration-300 ${
-        isFullscreen ? 'fixed inset-4 z-50' : 'aspect-[4/3] max-w-4xl mx-auto'
-      }`}>
+      <Card className={`relative  overflow-hidden bg-gradient-to-br from-blue-50 to-green-50 border-2 border-rose-100 shadow-xl transition-all duration-300 ${isFullscreen ? 'fixed inset-4 z-50' : 'aspect-[4/3] max-w-4xl mx-auto'
+        }`}>
         <CardContent className="p-0 h-full relative">
           {/* Map Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-green-50 to-yellow-50">
@@ -225,12 +276,12 @@ export function LoveJourneyMap() {
               }}
               onClick={() => handlePinClick(location)}
               initial={{ scale: 0, opacity: 0 }}
-              animate={{ 
-                scale: activePin === location.id ? 1.3 : 1, 
+              animate={{
+                scale: activePin === location.id ? 1.3 : 1,
                 opacity: 1,
                 y: animatingTo === location.id ? -10 : 0
               }}
-              transition={{ 
+              transition={{
                 delay: index * 0.1,
                 duration: 0.3,
                 type: "spring",
@@ -241,18 +292,18 @@ export function LoveJourneyMap() {
             >
               <div className="relative">
                 {/* Pin Shadow */}
-                <div 
+                <div
                   className="absolute top-8 left-1/2 transform -translate-x-1/2 w-4 h-2 rounded-full opacity-30 blur-sm"
                   style={{ backgroundColor: location.color }}
                 />
-                
+
                 {/* Pin */}
-                <div 
+                <div
                   className="w-8 h-8 rounded-full border-3 border-white shadow-lg flex items-center justify-center text-white text-sm font-bold relative"
                   style={{ backgroundColor: location.color }}
                 >
                   {categoryIcons[location.category]}
-                  
+
                   {/* Pulse animation for active pin */}
                   {activePin === location.id && (
                     <motion.div
@@ -265,7 +316,7 @@ export function LoveJourneyMap() {
                 </div>
 
                 {/* Pin Pointer */}
-                <div 
+                <div
                   className="absolute top-6 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-4 border-l-transparent border-r-transparent"
                   style={{ borderTopColor: location.color }}
                 />
@@ -285,7 +336,7 @@ export function LoveJourneyMap() {
             {mapLocations.map((location, index) => {
               if (index === mapLocations.length - 1) return null;
               const nextLocation = mapLocations[index + 1];
-              
+
               return (
                 <motion.line
                   key={`line-${location.id}`}
@@ -333,7 +384,7 @@ export function LoveJourneyMap() {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  
+
                   {/* Close Button */}
                   <Button
                     variant="ghost"
@@ -345,7 +396,7 @@ export function LoveJourneyMap() {
                   </Button>
 
                   {/* Category Badge */}
-                  <Badge 
+                  <Badge
                     className="absolute top-4 left-4 text-white border-white/30"
                     style={{ backgroundColor: selectedLocation.color }}
                   >
@@ -389,14 +440,14 @@ export function LoveJourneyMap() {
                         <Navigation className="w-4 h-4 rotate-180" />
                         Previous
                       </Button>
-                      
+
                       <div className="flex items-center gap-1">
                         <Heart className="w-4 h-4 text-rose-500" />
                         <span className="text-sm text-gray-500">
                           {mapLocations.findIndex(loc => loc.id === selectedLocation.id) + 1} of {mapLocations.length}
                         </span>
                       </div>
-                      
+
                       <Button
                         variant="outline"
                         onClick={navigateToNext}
@@ -409,6 +460,7 @@ export function LoveJourneyMap() {
                   </div>
                 </div>
               </div>
+              
             </motion.div>
           </motion.div>
         )}

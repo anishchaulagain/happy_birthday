@@ -38,26 +38,7 @@ export default function JourneyPage() {
             </p>
           </motion.div>
 
-          <Tabs defaultValue="timeline" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-12">
-              <TabsTrigger value="timeline" className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                Timeline
-              </TabsTrigger>
-              <TabsTrigger value="map" className="flex items-center gap-2">
-                <Map className="w-4 h-4" />
-                Journey Map
-              </TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="timeline">
-              <Timeline />
-            </TabsContent>
-            
-            <TabsContent value="map">
-              <LoveJourneyMap />
-            </TabsContent>
-          </Tabs>
+                <LoveJourneyMap />
         </div>
       </main>
     </>
