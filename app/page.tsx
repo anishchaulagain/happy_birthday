@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Confetti from 'react-confetti';
 import { Balloon } from '@/components/Balloon';
 import { CountdownTimer } from '@/components/CountdownTimer';
@@ -18,8 +18,12 @@ export default function Home() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 });
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [showPinInput, setShowPinInput] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioReady, setAudioReady] = useState(false);
+  const [pin, setPin] = useState('');
+  const [error, setError] = useState(false);
+  const correctPin = '0458';
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -30,7 +34,6 @@ export default function Home() {
     updateWindowDimensions();
     window.addEventListener('resize', updateWindowDimensions);
 
-    // Initialize audio element
     const audio = new Audio(
       'https://res.cloudinary.com/dv9s1kiz2/video/upload/v1759249281/Happy_Birthday_Dipika_oyqjux.mp3'
     );
@@ -49,7 +52,6 @@ export default function Home() {
     setShowConfetti(true);
     setTimeout(() => setShowConfetti(false), 5000);
 
-    // Play music if available
     if (audioReady && audioRef.current) {
       try {
         await audioRef.current.play();
@@ -72,6 +74,29 @@ export default function Home() {
       }
     } catch (error) {
       console.log('Audio play failed:', error);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (pin === correctPin) {
+      setError(false);
+      setTimeout(async () => {
+        setIsUnlocked(true);
+
+        // Auto-start music when unlocked
+        if (audioReady && audioRef.current) {
+          try {
+            await audioRef.current.play();
+            setIsPlaying(true);
+          } catch (error) {
+            console.log('Autoplay blocked:', error);
+          }
+        }
+      }, 500);
+    } else {
+      setError(true);
+      setPin('');
     }
   };
 
@@ -108,7 +133,7 @@ export default function Home() {
       </div>
 
       {/* Main Section */}
-      <main className="relative min-h-screen flex items-center justify-center px-4 mt-20">
+      <main className="relative min-h-screen flex flex-col items-center justify-center px-4 mt-20 space-y-10">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           {/* Intro */}
           <motion.div
@@ -137,61 +162,104 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Countdown */}
-          <CountdownTimer targetDate="2025-09-10" onComplete={() => setIsUnlocked(true)} />
+          {/* Countdown (Always Visible) */}
+          <div className="flex flex-col items-center gap-4">
+            <CountdownTimer targetDate="2025-09-10" onComplete={() => setShowPinInput(true)} />
 
-          {/* Surprise Button + Music Toggle */}
+            {/* Show PIN Input only after countdown completes */}
+            <AnimatePresence>
+              {showPinInput && !isUnlocked && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.6, ease: 'easeInOut' }}
+                  className="mt-4 p-6 bg-white/70 backdrop-blur-md rounded-2xl shadow-xl border border-rose-200 text-center"
+                >
+                  <h2 className="text-2xl font-semibold text-rose-600 mb-3">
+                    💖 Enter the Secret 4-Digit PIN 💖
+                  </h2>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <input
+                      type="password"
+                      value={pin}
+                      onChange={(e) => setPin(e.target.value)}
+                      maxLength={4}
+                      placeholder="----"
+                      className="text-center text-2xl tracking-widest font-mono border border-gray-300 rounded-lg px-4 py-2 w-32 mx-auto focus:ring-2 focus:ring-rose-400 outline-none"
+                    />
+                    <Button
+                      type="submit"
+                      className="block mx-auto bg-rose-500 hover:bg-rose-600 text-white rounded-full px-6 py-2"
+                    >
+                      Unlock
+                    </Button>
+                  </form>
+
+                  {error && (
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-3 text-sm text-rose-600 italic"
+                    >
+                      Remember baby remember... 💭 <br />
+                      
+                      "Jun Safar ma hami thiyau sath, Tehi 4 number ma lukeko xa yaha ko baat"<br/>
+                    
+                    </motion.p>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Surprise Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex justify-center items-center mt-4"
           >
-            <div className="relative flex items-center gap-3">
-              <Button
-                onClick={handleSurpriseClick}
-                className="group bg-rose-500 hover:bg-rose-600 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-pulse-glow"
-              >
-                <Sparkles className="mr-2 h-5 w-5 group-hover:animate-spin" />
-                Surprise Me!
-              </Button>
-
-              {/* Animated Play/Pause Toggle beside it */}
-              {audioReady && (
-                <motion.button
-                  onClick={toggleMusic}
-                  whileTap={{ scale: 0.9 }}
-                  animate={{ rotate: isPlaying ? [0, 10, -10, 0] : 0 }}
-                  transition={{ duration: 0.6, repeat: isPlaying ? Infinity : 0 }}
-                  className={`p-3 rounded-full shadow-md border-2 transition-all duration-300 ${
-                    isPlaying
-                      ? 'bg-rose-500 text-white border-rose-400 hover:bg-rose-600'
-                      : 'bg-white text-gray-600 border-gray-300 hover:bg-rose-50'
-                  }`}
-                >
-                  {isPlaying ? (
-                    <Volume2 className="h-5 w-5 animate-pulse" />
-                  ) : (
-                    <VolumeX className="h-5 w-5" />
-                  )}
-                </motion.button>
-              )}
-            </div>
+            <Button
+              onClick={handleSurpriseClick}
+              className="group bg-rose-500 hover:bg-rose-600 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-pulse-glow"
+            >
+              <Sparkles className="mr-2 h-5 w-5 group-hover:animate-spin" />
+              Surprise Me!
+            </Button>
           </motion.div>
         </div>
       </main>
 
-      {isUnlocked ? (
+      {/* Music Toggle (Fixed Bottom-Right Corner) */}
+      {audioReady && (
+        <motion.button
+          onClick={toggleMusic}
+          whileTap={{ scale: 0.9 }}
+          animate={{ rotate: isPlaying ? [0, 10, -10, 0] : 0 }}
+          transition={{ duration: 0.6, repeat: isPlaying ? Infinity : 0 }}
+          className={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-lg border-2 transition-all duration-300 ${
+            isPlaying
+              ? 'bg-rose-500 text-white border-rose-400 hover:bg-rose-600'
+              : 'bg-white text-gray-600 border-gray-300 hover:bg-rose-50'
+          }`}
+        >
+          {isPlaying ? (
+            <Volume2 className="h-6 w-6 animate-pulse" />
+          ) : (
+            <VolumeX className="h-6 w-6" />
+          )}
+        </motion.button>
+      )}
+
+      {/* Unlocked Content */}
+      {isUnlocked && (
         <>
-        <JourneyPage/>
+          {/* <JourneyPage /> */}
           <FunPage />
           <GalleryPage />
           <PhotoBooth />
         </>
-      ) : (
-        <div className="text-center py-12 text-gray-600">
-          🔒 Content will unlock on the special day!
-        </div>
       )}
     </>
   );
