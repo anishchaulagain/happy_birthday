@@ -65,7 +65,7 @@ const secretPhotos = [
     },
     {
         id: 3,
-        src: "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760016973/WhatsApp_Video_2025-10-09_at_19.20.35_d0ca9962_vulzia.mp4",
+        src: "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760023280/WhatsApp_Video_2025-10-09_at_21.05.49_7d9fc229_dnbpns.mp4",
         caption: "Hamro First Unofficial Date🤭 Al thanks to mero sathi bhai ✨"
     },
    
@@ -228,7 +228,7 @@ export function EasterEggHunter() {
                                                 controls
                                                 autoPlay
                                                 loop
-                                                muted={false}
+                                                muted
                                             />
                                         ) : (
                                             <img

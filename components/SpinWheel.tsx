@@ -77,7 +77,7 @@ const wheelSegments: WheelSegment[] = [
         content: {
             type: 'coupon',
             title: "Redeemable Hug Coupon",
-            description: "Good for one (1) extra long, extra warm, extra loving hug. No expiration date. Can be redeemed anytime, anywhere. Side effects may include excessive happiness 🫂💕"
+            description: "Good for one extra long, extra warm, extra loving hug. No expiration date. Can be redeemed anytime, anywhere. Side effects may include excessive happiness 🫂💕"
         }
     },
     {
