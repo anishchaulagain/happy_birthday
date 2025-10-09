@@ -19,42 +19,35 @@ const easterEggs: EasterEgg[] = [
         id: 'heart1',
         icon: <Heart className="w-4 h-4 text-rose-400" />,
         position: { top: '20%', right: '5%' },
-        note: "Remember when you said my laugh was your favorite sound? It still makes me smile every time I think about it 💕",
+        note: "I always wish your all dream come true baby. 💕",
         type: 'heart'
     },
     {
         id: 'heart2',
         icon: <Heart className="w-4 h-4 text-rose-400" />,
         position: { bottom: '30%', left: '3%' },
-        note: "That time you fell asleep on my shoulder during the movie... I stayed perfectly still for 2 hours because you looked so peaceful 😴",
+        note: "That time you leaned on my shoulder during the movie... Though malai movie ko name last ma tha vayo ayo haha, but it was very amazing because you looked so peaceful 😴 Btw still thankful to you for the surprise.",
         type: 'heart'
     },
     {
         id: 'heart3',
         icon: <Heart className="w-4 h-4 text-rose-400" />,
         position: { top: '60%', right: '8%' },
-        note: "I love how you always steal my hoodies and somehow make them look better than I ever could 👕",
+        note: "I love how you wear my hoodie though jadoo jsto dekhithiyo🤭 and dada ko jacket was too awesome 👕",
         type: 'heart'
     },
     {
         id: 'star1',
         icon: <Star className="w-4 h-4 text-yellow-400" />,
         position: { top: '40%', left: '2%' },
-        note: "You're the reason I believe in magic ✨",
-        type: 'star'
-    },
-    {
-        id: 'star2',
-        icon: <Star className="w-4 h-4 text-yellow-400" />,
-        position: { bottom: '20%', right: '10%' },
-        note: "Every day with you feels like winning the lottery 🎰",
+        note: "Birthday Eve mai risaidira. Sorry mero galti thyo🥺 ✨",
         type: 'star'
     },
     {
         id: 'flower1',
         icon: <Flower className="w-4 h-4 text-pink-400" />,
         position: { top: '80%', left: '5%' },
-        note: "You bloom wherever you go, making everything more beautiful 🌸",
+        note: "October 10 ma birthday parinjel mero 10/10 baddie, else 11/10 baddie🌸",
         type: 'flower'
     }
 ];
@@ -62,19 +55,20 @@ const easterEggs: EasterEgg[] = [
 const secretPhotos = [
     {
         id: 1,
-        src: "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=600",
-        caption: "Our secret photo album - this is where we keep the silly faces and candid moments 📸"
+        src: "https://res.cloudinary.com/dv9s1kiz2/image/upload/v1760017056/Screenshot_2025-08-12_234759_as0twq.png",
+        caption: "Best Video Call Ever. Google meet ma kun chai couple video call garxan hola🤡  📸"
     },
     {
         id: 2,
-        src: "https://images.pexels.com/photos/1024870/pexels-photo-1024870.jpeg?auto=compress&cs=tinysrgb&w=600",
-        caption: "Remember this day? You were laughing so hard you snorted, and I fell in love all over again 😂"
+        src: "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760016204/WhatsApp_Video_2025-10-09_at_19.06.56_64f293d7_otj6kn.mp4",
+        caption: "Remember this day? First Visit to Kritipur ko pul, teo pani gala ma tape tasera🤦"
     },
     {
         id: 3,
-        src: "https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg?auto=compress&cs=tinysrgb&w=600",
-        caption: "The photo I took when you weren't looking - pure happiness captured ✨"
-    }
+        src: "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760016973/WhatsApp_Video_2025-10-09_at_19.20.35_d0ca9962_vulzia.mp4",
+        caption: "Hamro First Unofficial Date🤭 Al thanks to mero sathi bhai ✨"
+    },
+   
 ];
 
 export function EasterEggHunter() {
@@ -224,16 +218,25 @@ export function EasterEggHunter() {
                                 </div>
 
                                 <div className="space-y-4">
-                                    <p className="text-gray-600 text-center mb-6">
-                                        You found all the hidden hearts! Here are some secret photos just for you 💕
-                                    </p>
+                                  
 
                                     <div className="relative">
-                                        <img
-                                            src={secretPhotos[currentSecretPhoto].src}
-                                            alt="Secret photo"
-                                            className="w-full h-64 object-cover rounded-lg"
-                                        />
+                                        {secretPhotos[currentSecretPhoto].src.endsWith('.mp4') ? (
+                                            <video
+                                                src={secretPhotos[currentSecretPhoto].src}
+                                                className="w-full h-64 object-cover rounded-lg"
+                                                controls
+                                                autoPlay
+                                                loop
+                                                muted={false}
+                                            />
+                                        ) : (
+                                            <img
+                                                src={secretPhotos[currentSecretPhoto].src}
+                                                alt="Secret photo"
+                                                className="w-full h-64 object-cover rounded-lg"
+                                            />
+                                        )}
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg" />
                                         <p className="absolute bottom-4 left-4 right-4 text-white text-sm">
                                             {secretPhotos[currentSecretPhoto].caption}
@@ -246,8 +249,8 @@ export function EasterEggHunter() {
                                                 key={index}
                                                 onClick={() => setCurrentSecretPhoto(index)}
                                                 className={`w-3 h-3 rounded-full transition-all ${index === currentSecretPhoto
-                                                        ? 'bg-rose-500 w-8'
-                                                        : 'bg-gray-300 hover:bg-rose-300'
+                                                    ? 'bg-rose-500 w-8'
+                                                    : 'bg-gray-300 hover:bg-rose-300'
                                                     }`}
                                             />
                                         ))}

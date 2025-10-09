@@ -23,7 +23,7 @@ export default function Home() {
   const [audioReady, setAudioReady] = useState(false);
   const [pin, setPin] = useState('');
   const [error, setError] = useState(false);
-  const correctPin = '0458';
+  const correctPin = '8560';
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -35,7 +35,8 @@ export default function Home() {
     window.addEventListener('resize', updateWindowDimensions);
 
     const audio = new Audio(
-      'https://res.cloudinary.com/dv9s1kiz2/video/upload/v1759249281/Happy_Birthday_Dipika_oyqjux.mp3'
+      // 'https://res.cloudinary.com/dv9s1kiz2/video/upload/v1759249281/Happy_Birthday_Dipika_oyqjux.mp3'
+      "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760015168/Dipika_s_Birthday_Song_ig1zra.mp3"
     );
     audio.loop = true;
     audio.volume = 0.3;
@@ -83,6 +84,8 @@ export default function Home() {
       setError(false);
       setTimeout(async () => {
         setIsUnlocked(true);
+
+        handleSurpriseClick();
 
         // Auto-start music when unlocked
         if (audioReady && audioRef.current) {
@@ -164,7 +167,8 @@ export default function Home() {
 
           {/* Countdown (Always Visible) */}
           <div className="flex flex-col items-center gap-4">
-            <CountdownTimer targetDate="2025-10-10T00:00:00+05:45" onComplete={() => setShowPinInput(true)} />
+            {/* <CountdownTimer targetDate="2025-10-10T00:00:00+05:45" onComplete={() => setShowPinInput(true)} /> */}
+            <CountdownTimer targetDate="2025-09-10" onComplete={() => setShowPinInput(true)} />
 
             {/* Show PIN Input only after countdown completes */}
             <AnimatePresence>
@@ -203,9 +207,9 @@ export default function Home() {
                       className="mt-3 text-sm text-rose-600 italic"
                     >
                       Remember baby remember... 💭 <br />
-                      
-                      "Jun Safar ma hami thiyau sath, Tehi 4 number ma lukeko xa yaha ko baat"<br/>
-                    
+
+                      "Jun Safar ma hami thiyau sath, Tehi 4 number ma lukeko xa yaha ko baat"<br />
+
                     </motion.p>
                   )}
                 </motion.div>
@@ -238,11 +242,10 @@ export default function Home() {
           whileTap={{ scale: 0.9 }}
           animate={{ rotate: isPlaying ? [0, 10, -10, 0] : 0 }}
           transition={{ duration: 0.6, repeat: isPlaying ? Infinity : 0 }}
-          className={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-lg border-2 transition-all duration-300 ${
-            isPlaying
-              ? 'bg-rose-500 text-white border-rose-400 hover:bg-rose-600'
-              : 'bg-white text-gray-600 border-gray-300 hover:bg-rose-50'
-          }`}
+          className={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-lg border-2 transition-all duration-300 ${isPlaying
+            ? 'bg-rose-500 text-white border-rose-400 hover:bg-rose-600'
+            : 'bg-white text-gray-600 border-gray-300 hover:bg-rose-50'
+            }`}
         >
           {isPlaying ? (
             <Volume2 className="h-6 w-6 animate-pulse" />

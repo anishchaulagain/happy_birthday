@@ -12,48 +12,49 @@ interface WheelSegment {
     color: string;
     icon: React.ReactNode;
     content: {
-        type: 'photo' | 'joke' | 'song' | 'gift' | 'memory' | 'coupon';
+        type: 'photo' | 'joke' | 'song' | 'gift' | 'memory' | 'coupon' | 'video';
         title: string;
         description: string;
         image?: string;
         link?: string;
+        video? : string;
     };
 }
 
 const wheelSegments: WheelSegment[] = [
     {
         id: 1,
-        label: "Memory Photo",
+        label: "Birthday Asirbad",
         color: "#f43f5e",
         icon: <Camera className="w-4 h-4" />,
         content: {
             type: 'photo',
-            title: "Our First Date Memory",
-            description: "Himalayan Java, Unofficial thyo, but Best first date ever! 💕",
-            image: "https://images.pexels.com/photos/1024870/pexels-photo-1024870.jpeg?auto=compress&cs=tinysrgb&w=400"
+            title: "Birthday Asirbad",
+            description: "Mero baby, Sadhai gyani hunu, vaneko mannu, ra tmle mageko sabai kura pura hos. ILYSM 💕",
+            image: "https://res.cloudinary.com/dv9s1kiz2/image/upload/v1760017543/WhatsApp_Image_2025-10-09_at_19.29.37_fa0dac16_swdyrg.jpg"
         }
     },
     {
         id: 2,
-        label: "Inside Joke",
+        label: "Informative Spin",
         color: "#8b5cf6",
         icon: <Sparkles className="w-4 h-4" />,
         content: {
             type: 'joke',
-            title: "The Great Pizza Debate",
-            description: "You: 'Pineapple belongs on pizza!' Me: 'That's illegal!' Us now: Ordering half pineapple, half normal like the compromise champions we are 🍕😂"
+            title: "Right side ko bottom corner bata geet off hunxa la",
+            description: "Yo chai aheley 2025-10-09 ko 8:02 ma tha paye ki geet off garna vanera icon banauna birsechu. Spin garda yo ayo vane chai tya tala right ma birthday geet off garna milne option xa hai. Ani hattar ma banako, tei vayera spin garda eutai patak patak aauna sakxa. There are 5 surprises hai. Gift chai chocolate diyesi😂"
         }
     },
     {
         id: 3,
-        label: "Song Link",
+        label: "Fun Video",
         color: "#f59e0b",
         icon: <Music className="w-4 h-4" />,
         content: {
-            type: 'song',
-            title: "Our Song",
-            description: "The song that was playing when we first danced in the kitchen at 2 AM. Every time I hear it, I fall in love with you all over again 🎵",
-            link: "https://open.spotify.com/track/example"
+            type: 'video',
+            title: "Random Capture at Nalagadi",
+            description: "Eti cute video banayesi jhadaga ne vayo paxi 🎵",
+            link: "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760019042/WhatsApp_Video_2025-10-09_at_19.54.44_ab18bd25_sx04uj.mp4"
         }
     },
     {
@@ -63,23 +64,13 @@ const wheelSegments: WheelSegment[] = [
         icon: <Gift className="w-4 h-4" />,
         content: {
             type: 'gift',
-            title: "Birthday Surprise Clue",
-            description: "It's something you've mentioned wanting, it's small enough to hide, and it sparkles just like your eyes when you smile ✨💎"
+            title: "A little Surprise",
+            description: "We're going somewhere after your exam. We’ll be chasing a golden glow and a silver farewell… just follow me.✨💎"
         }
     },
+   
     {
         id: 5,
-        label: "Sweet Memory",
-        color: "#10b981",
-        icon: <Heart className="w-4 h-4" />,
-        content: {
-            type: 'memory',
-            title: "Rainy Day Magic",
-            description: "That day it poured and we got completely soaked running to the car. Instead of being upset, you started dancing in the rain. That's when I knew you were magic ☔💃"
-        }
-    },
-    {
-        id: 6,
         label: "Love Coupon",
         color: "#ec4899",
         icon: <Heart className="w-4 h-4" />,
@@ -270,11 +261,24 @@ export function SpinWheel() {
                                     </Button>
                                 </div>
 
-                                {selectedSegment.content.image && (
-                                    <img
-                                        src={selectedSegment.content.image}
-                                        alt={selectedSegment.content.title}
-                                        className="w-full h-48 object-cover rounded-lg mb-4"
+                                {
+                                    selectedSegment.content.image && selectedSegment.content.type !== 'video' && (
+                                        <img
+                                            src={selectedSegment.content.image}
+                                            alt={selectedSegment.content.title}
+                                            className="w-full h-96 sm:h-[400px] md:h-[500px] object-cover rounded-lg mb-4"
+                                        />
+                                    )
+                                }
+
+                      {selectedSegment.content.type === 'video' && selectedSegment.content.link && (
+                                    <video
+                                        src={selectedSegment.content.link}
+                                        className="w-full h-[500px] sm:h-[600px] md:h-[700px] object-cover rounded-lg mb-4"
+                                        autoPlay
+                                        muted
+                                        controls
+                                        playsInline
                                     />
                                 )}
 
@@ -282,14 +286,14 @@ export function SpinWheel() {
                                     {selectedSegment.content.description}
                                 </p>
 
-                                {selectedSegment.content.link && (
+                                {/* {selectedSegment.content.link && (
                                     <Button
                                         onClick={() => window.open(selectedSegment.content.link, '_blank')}
                                         className="w-full bg-rose-500 hover:bg-rose-600 text-white"
                                     >
                                         Listen Now 🎵
                                     </Button>
-                                )}
+                                )} */}
 
                                 {selectedSegment.content.type === 'coupon' && (
                                     <div className="bg-rose-50 border-2 border-dashed border-rose-300 rounded-lg p-4 text-center">
