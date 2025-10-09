@@ -35,8 +35,8 @@ export default function Home() {
     window.addEventListener('resize', updateWindowDimensions);
 
     const audio = new Audio(
-      // 'https://res.cloudinary.com/dv9s1kiz2/video/upload/v1759249281/Happy_Birthday_Dipika_oyqjux.mp3'
-      "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760015168/Dipika_s_Birthday_Song_ig1zra.mp3"
+      'https://res.cloudinary.com/dv9s1kiz2/video/upload/v1759249281/Happy_Birthday_Dipika_oyqjux.mp3'
+      // "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760015168/Dipika_s_Birthday_Song_ig1zra.mp3"
     );
     audio.loop = true;
     audio.volume = 0.3;
