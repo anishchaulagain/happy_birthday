@@ -14,7 +14,7 @@ const BirthdayPhotoBooth = () => {
 
   // IMPORTANT: Replace with your WhatsApp number in international format (without + or -)
   // Example: For +1-234-567-8900, use '12345678900'
-  const whatsappNumber = '9779876543210'; // UPDATE THIS!
+  const whatsappNumber = '+88484848'; // UPDATE THIS!
 
   useEffect(() => {
     return () => {
@@ -32,17 +32,17 @@ const BirthdayPhotoBooth = () => {
   const startCamera = async () => {
     try {
       setError('');
-      const mediaStream = await navigator.mediaDevices.getUserMedia({ 
-        video: { 
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
+        video: {
           facingMode: 'user',
           width: { ideal: 1280 },
           height: { ideal: 720 }
         },
-        audio: false 
+        audio: false
       });
       setStream(mediaStream);
       setShowCamera(true);
-      
+
       setTimeout(() => {
         if (videoRef.current) {
           videoRef.current.srcObject = mediaStream;
@@ -57,7 +57,7 @@ const BirthdayPhotoBooth = () => {
   const capturePhoto = () => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
-    
+
     if (!video || !canvas) {
       setError('Camera not ready. Please try again.');
       return;
@@ -66,19 +66,19 @@ const BirthdayPhotoBooth = () => {
     canvas.width = video.videoWidth || 640;
     canvas.height = video.videoHeight || 480;
     const ctx = canvas.getContext('2d');
-    
+
     if (!ctx) return;
 
     ctx.save();
     ctx.scale(-1, 1);
     ctx.drawImage(video, -canvas.width, 0, canvas.width, canvas.height);
     ctx.restore();
-    
+
     addEffects(ctx, canvas.width, canvas.height);
-    
+
     const imageData = canvas.toDataURL('image/png');
     setCapturedImage(imageData);
-    
+
     stopCamera();
     setShowCamera(false);
   };
@@ -86,7 +86,7 @@ const BirthdayPhotoBooth = () => {
   const addEffects = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
     // Add decorative elements first (behind text)
     ctx.font = `${Math.floor(width / 25)}px Arial`;
-    
+
     if (selectedEffect === 'hearts') {
       const hearts = ['💕', '💖', '💗', '💝', '❤️'];
       for (let i = 0; i < 20; i++) {
@@ -133,24 +133,24 @@ const BirthdayPhotoBooth = () => {
     ctx.font = `italic ${fontSize}px Brush Script MT, cursive`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    
+
     const text = "It's my birthday!";
     const x = width / 2;
     const y = height - 60;
-    
+
     // Add glow effect
     ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
     ctx.shadowBlur = 15;
-    
+
     // Multiple stroke layers for depth
     ctx.lineWidth = 8;
     ctx.strokeStyle = '#ffffff';
     ctx.strokeText(text, x, y);
-    
+
     ctx.lineWidth = 6;
     ctx.strokeStyle = '#ffe6f0';
     ctx.strokeText(text, x, y);
-    
+
     // Main text with gradient effect
     const gradient = ctx.createLinearGradient(0, y - fontSize / 2, 0, y + fontSize / 2);
     gradient.addColorStop(0, '#ff1493');
@@ -158,11 +158,11 @@ const BirthdayPhotoBooth = () => {
     gradient.addColorStop(1, '#ff1493');
     ctx.fillStyle = gradient;
     ctx.fillText(text, x, y);
-    
+
     // Reset shadow
     ctx.shadowColor = 'transparent';
     ctx.shadowBlur = 0;
-    
+
     // Add decorative elements around text
     const decorSize = Math.floor(fontSize * 0.8);
     ctx.font = `${decorSize}px Arial`;
@@ -199,7 +199,7 @@ const BirthdayPhotoBooth = () => {
       const left = Math.random() * 100;
       const delay = Math.random() * 5;
       const duration = 3 + Math.random() * 2;
-      
+
       return (
         <div
           key={i}
@@ -213,7 +213,7 @@ const BirthdayPhotoBooth = () => {
         />
       );
     });
-    
+
     return <>{confettiPieces}</>;
   };
 
@@ -347,7 +347,7 @@ const BirthdayPhotoBooth = () => {
                 </h2>
                 <p className="text-gray-600">Send this to your boyfriend!</p>
               </div>
-              
+
               <div className="rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src={capturedImage}
@@ -359,13 +359,17 @@ const BirthdayPhotoBooth = () => {
               <div className="space-y-3">
                 <Button
                   size="lg"
-                  onClick={sendToBoyfriend}
-                  className="w-full gap-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white py-6 text-lg font-semibold"
+                  disabled
+                  className="w-full gap-2 bg-gray-300 text-white py-6 text-lg font-semibold cursor-not-allowed"
                 >
                   <Send className="w-5 h-5" />
-                  Send to Your Boyfriend 💕
+                  Send to Your Boyfriend 💕 (Manual)
                 </Button>
-                
+
+                <div className="text-sm text-gray-500 mt-2 text-center">
+                  ⚠️ Yo hawa whatsapp ma link bata image pathauna na milne raixa, Tei vayera tala download click garera pathau la mero bachhu.
+                </div>
+
                 <div className="grid grid-cols-2 gap-3">
                   <Button
                     size="lg"
@@ -376,7 +380,7 @@ const BirthdayPhotoBooth = () => {
                     <Download className="w-5 h-5" />
                     Download
                   </Button>
-                  
+
                   <Button
                     size="lg"
                     onClick={retakePhoto}

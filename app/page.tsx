@@ -164,7 +164,7 @@ export default function Home() {
 
           {/* Countdown (Always Visible) */}
           <div className="flex flex-col items-center gap-4">
-            <CountdownTimer targetDate="2025-09-10" onComplete={() => setShowPinInput(true)} />
+            <CountdownTimer targetDate="2025-10-10T00:00:00+05:45" onComplete={() => setShowPinInput(true)} />
 
             {/* Show PIN Input only after countdown completes */}
             <AnimatePresence>
@@ -257,7 +257,7 @@ export default function Home() {
         <>
           {/* <JourneyPage /> */}
           <FunPage />
-          <GalleryPage />
+          {/* <GalleryPage /> */}
           <PhotoBooth />
         </>
       )}
