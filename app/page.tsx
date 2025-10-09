@@ -183,6 +183,7 @@ export default function Home() {
                   <h2 className="text-2xl font-semibold text-rose-600 mb-3">
                     💖 Enter the Secret 4-Digit PIN 💖
                   </h2>
+                  <p className='text-2xl font-semibold text-rose-600 mb-3'>Broom! Broom!</p>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <input
                       type="password"
