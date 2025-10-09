@@ -58,17 +58,17 @@ const secretPhotos = [
         src: "https://res.cloudinary.com/dv9s1kiz2/image/upload/v1760017056/Screenshot_2025-08-12_234759_as0twq.png",
         caption: "Best Video Call Ever. Google meet ma kun chai couple video call garxan hola🤡  📸"
     },
+    // {
+    //     id: 2,
+    //     src: "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760016204/WhatsApp_Video_2025-10-09_at_19.06.56_64f293d7_otj6kn.mp4",
+    //     caption: "Remember this day? First Visit to Kritipur ko pul, teo pani gala ma tape tasera🤦"
+    // },
     {
         id: 2,
-        src: "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760016204/WhatsApp_Video_2025-10-09_at_19.06.56_64f293d7_otj6kn.mp4",
-        caption: "Remember this day? First Visit to Kritipur ko pul, teo pani gala ma tape tasera🤦"
-    },
-    {
-        id: 3,
         src: "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760023280/WhatsApp_Video_2025-10-09_at_21.05.49_7d9fc229_dnbpns.mp4",
-        caption: "Hamro First Unofficial Date🤭 Al thanks to mero sathi bhai ✨"
+        caption: "Hamro First Unofficial Date🤭 All thanks to mero sathi bhai, Yo chai front view hehe✨"
     },
-   
+
 ];
 
 export function EasterEggHunter() {
@@ -218,7 +218,7 @@ export function EasterEggHunter() {
                                 </div>
 
                                 <div className="space-y-4">
-                                  
+
 
                                     <div className="relative">
                                         {secretPhotos[currentSecretPhoto].src.endsWith('.mp4') ? (
