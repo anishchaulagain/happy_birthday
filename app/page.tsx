@@ -157,7 +157,7 @@ export default function Home() {
 
             <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
               I made this little corner of the internet just for you.
-              It's our story, our memories, and a celebration of another year
+              It's a celebration of another year
               of having you light up my world. Ready for your surprise?
             </p>
           </motion.div>

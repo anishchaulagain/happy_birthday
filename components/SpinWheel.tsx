@@ -29,7 +29,7 @@ const wheelSegments: WheelSegment[] = [
         content: {
             type: 'photo',
             title: "Our First Date Memory",
-            description: "Remember how nervous we both were? You kept playing with your hair, and I couldn't stop smiling. Best first date ever! 💕",
+            description: "Himalayan Java, Unofficial thyo, but Best first date ever! 💕",
             image: "https://images.pexels.com/photos/1024870/pexels-photo-1024870.jpeg?auto=compress&cs=tinysrgb&w=400"
         }
     },
@@ -104,17 +104,29 @@ export function SpinWheel() {
         setIsSpinning(true);
         setShowResult(false);
 
-        // Random spin between 3-6 full rotations plus random segment
-        const spins = 3 + Math.random() * 3;
+        const spins = 3 + Math.random() * 3; // random full spins
         const segmentAngle = 360 / wheelSegments.length;
-        const randomSegment = Math.floor(Math.random() * wheelSegments.length);
-        const finalRotation = rotation + (spins * 360) + (randomSegment * segmentAngle);
+
+        // Add randomness within segment range
+        const randomOffset = Math.random() * segmentAngle;
+
+        // Final rotation
+        const finalRotation = rotation + spins * 360 + randomOffset;
 
         setRotation(finalRotation);
 
         setTimeout(() => {
             setIsSpinning(false);
-            setSelectedSegment(wheelSegments[randomSegment]);
+
+            // Normalize to 0–360
+            const normalizedRotation = finalRotation % 360;
+
+            // Calculate which segment the pointer lands on (top = 0 degrees)
+            const selectedIndex =
+                Math.floor((wheelSegments.length - normalizedRotation / segmentAngle)) %
+                wheelSegments.length;
+
+            setSelectedSegment(wheelSegments[selectedIndex]);
             setShowResult(true);
         }, 3000);
     };
