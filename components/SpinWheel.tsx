@@ -17,7 +17,7 @@ interface WheelSegment {
         description: string;
         image?: string;
         link?: string;
-        video? : string;
+        video?: string;
     };
 }
 
@@ -42,7 +42,7 @@ const wheelSegments: WheelSegment[] = [
         content: {
             type: 'joke',
             title: "Right side ko bottom corner bata geet off hunxa la",
-            description: "Yo chai aheley 2025-10-09 ko 8:02 ma tha paye ki geet off garna vanera icon banauna birsechu. Spin garda yo ayo vane chai tya tala right ma birthday geet off garna milne option xa hai. Ani hattar ma banako, tei vayera spin garda eutai patak patak aauna sakxa. There are 5 surprises hai. Gift chai chocolate diyesi😂"
+            description: "Yo chai aheley 2025-10-09 ko 8:02 ma tha paye ki geet off garna vanera icon banauna birsechu. Spin garda yo ayo vane chai tya tala right ma birthday geet off garna milne option xa hai. Ani hattar ma banako, tei vayera spin garda eutai patak patak aauna sakxa. There are around 7 special things hai. Gift chai chocolate diyesi😂"
         }
     },
     {
@@ -65,10 +65,10 @@ const wheelSegments: WheelSegment[] = [
         content: {
             type: 'gift',
             title: "A little Surprise",
-            description: "We're going somewhere after your exam. We’ll be chasing a golden glow and a silver farewell… just follow me.✨💎"
+            description: "We're going somewhere after your exam. Hint: We’ll be chasing a golden glow and a silver farewell… just follow me.✨💎"
         }
     },
-   
+
     {
         id: 5,
         label: "Love Coupon",
@@ -79,7 +79,45 @@ const wheelSegments: WheelSegment[] = [
             title: "Redeemable Hug Coupon",
             description: "Good for one (1) extra long, extra warm, extra loving hug. No expiration date. Can be redeemed anytime, anywhere. Side effects may include excessive happiness 🫂💕"
         }
-    }
+    },
+    {
+        id: 6,
+        label: " Himalayan Java Unofficial Date",
+        color: "#f59e0b",
+        icon: <Music className="w-4 h-4" />,
+        content: {
+            type: 'video',
+            title: "First Jhut bolera lageko Unofficial Date",
+            description: "Hamro First Unofficial Date🤭 All thanks to mero sathi bhai ✨",
+            link: "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760016973/WhatsApp_Video_2025-10-09_at_19.20.35_d0ca9962_vulzia.mp4"
+        }
+    },
+    {
+        id: 7,
+        label: "First Visit to Kritipur Pul",
+        color: "#f59e0b",
+        icon: <Music className="w-4 h-4" />,
+        content: {
+            type: 'video',
+            title: "Random Capture at Nalagadi",
+            description: "Remember this day? First Visit to Kritipur ko pul, teo pani gala ma tape tasera🤦",
+            link: "https://res.cloudinary.com/dv9s1kiz2/video/upload/v1760016204/WhatsApp_Video_2025-10-09_at_19.06.56_64f293d7_otj6kn.mp4"
+        }
+    },
+    {
+        id: 8,
+        label: "First Shadow Pic Together",
+        color: "#f43f5e",
+        icon: <Camera className="w-4 h-4" />,
+        content: {
+            type: 'photo',
+            title: "Shadow Pic Together",
+            description: "Hamro cute shadow pic, but mero sathi samaj ma jaggu sanga khiceko vanera halla faileko thyo yo snap le garda🤦",
+            image: "https://res.cloudinary.com/dv9s1kiz2/image/upload/v1760021665/WhatsApp_Image_2025-10-09_at_20.38.34_8eb62275_hghmuq.jpg"
+        }
+    },
+    
+    
 ];
 
 export function SpinWheel() {
@@ -89,36 +127,27 @@ export function SpinWheel() {
     const [showResult, setShowResult] = useState(false);
     const wheelRef = useRef<HTMLDivElement>(null);
 
+    const [currentIndex, setCurrentIndex] = useState(0);
+
     const spinWheel = () => {
         if (isSpinning) return;
 
         setIsSpinning(true);
         setShowResult(false);
 
-        const spins = 3 + Math.random() * 3; // random full spins
         const segmentAngle = 360 / wheelSegments.length;
+        const nextIndex = (currentIndex + 1) % wheelSegments.length;
 
-        // Add randomness within segment range
-        const randomOffset = Math.random() * segmentAngle;
-
-        // Final rotation
-        const finalRotation = rotation + spins * 360 + randomOffset;
+        // Calculate the rotation needed to reach the next segment
+        const finalRotation = rotation + (360 - (nextIndex * segmentAngle)) + 360 * 3; // 3 full spins
 
         setRotation(finalRotation);
 
         setTimeout(() => {
             setIsSpinning(false);
-
-            // Normalize to 0–360
-            const normalizedRotation = finalRotation % 360;
-
-            // Calculate which segment the pointer lands on (top = 0 degrees)
-            const selectedIndex =
-                Math.floor((wheelSegments.length - normalizedRotation / segmentAngle)) %
-                wheelSegments.length;
-
-            setSelectedSegment(wheelSegments[selectedIndex]);
+            setSelectedSegment(wheelSegments[nextIndex]);
             setShowResult(true);
+            setCurrentIndex(nextIndex);
         }, 3000);
     };
 
@@ -271,7 +300,7 @@ export function SpinWheel() {
                                     )
                                 }
 
-                      {selectedSegment.content.type === 'video' && selectedSegment.content.link && (
+                                {selectedSegment.content.type === 'video' && selectedSegment.content.link && (
                                     <video
                                         src={selectedSegment.content.link}
                                         className="w-full h-[500px] sm:h-[600px] md:h-[700px] object-cover rounded-lg mb-4"
